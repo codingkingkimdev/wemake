@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 React Router v8 in **Framework Mode** (Vite plugin `@react-router/dev/vite`) with SSR enabled (`ssr: true` in `react-router.config.ts`), React 19, and Tailwind CSS v4.
 
-- **Routes are configured explicitly** in `app/routes.ts`, not inferred from the filesystem. A new file under `app/routes/` does nothing until it is registered there (`index(...)`, `route(...)`, `layout(...)`, `prefix(...)` from `@react-router/dev/routes`).
+- **Routes are configured explicitly** in `app/routes.ts`, not inferred from the filesystem. Route modules live in `app/common/pages/` (shared pages) and `app/features/<feature>/pages/`; a new page does nothing until it is registered there (`index(...)`, `route(...)`, `layout(...)`, `prefix(...)` from `@react-router/dev/routes`).
 - **Route module types are generated.** Each route imports `type { Route } from "./+types/<name>"`; these files live in the gitignored `.react-router/types/` and are mapped into `app/` via `rootDirs` in `tsconfig.json`. After adding or renaming a route, run `npm run typecheck` (or the dev server) to regenerate them before type errors are meaningful.
 - **`app/root.tsx`** owns the HTML document (`Layout`), the top-level `ErrorBoundary`, and imports the global `app/app.css`. The Inter font is self-hosted via an `@import` at the top of `app/app.css`, not loaded from Google Fonts. Route modules export `meta`, `loader`, `action`, `ErrorBoundary`, etc. as needed.
 - **Styling:** Tailwind v4 is configured CSS-first in `app/app.css` (`@import "tailwindcss"` + `@theme`); there is no `tailwind.config.js`. The `dark:` variant is class-based (`.dark` on an ancestor, set up by shadcn), so it does not follow `prefers-color-scheme` on its own.
@@ -22,7 +22,7 @@ React Router v8 in **Framework Mode** (Vite plugin `@react-router/dev/vite`) wit
 ## UI components (shadcn/ui)
 
 - Configured by `components.json` (Radix UI primitives, "vega" style, lucide icons). Add components with `npx shadcn@latest add <name>`; never hand-write files that the CLI can generate.
-- Generated components land in `app/components/ui/` and are project-owned source — edit them directly rather than wrapping them.
+- Generated components land in `app/common/components/ui/` (aliases in `components.json`) and are project-owned source — edit them directly rather than wrapping them. Shared app components such as `navigation-bar.tsx` live one level up in `app/common/components/`.
 - Theme colors are CSS variables (`--background`, `--primary`, …) defined in `app/app.css`; change the theme there, not per component.
 - Merge class names with `cn`. It comes from the `cn` package (shadcn's replacement for clsx + tailwind-merge) and is re-exported from `~/lib/utils`.
 
