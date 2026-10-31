@@ -31,10 +31,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <>
-      <NavigationBar />
+    <div className="py-28">
+      <NavigationBar
+        isLoggedIn={false}
+        hasNotifications={false}
+        hasMessages={false}
+      />
       <Outlet />
-    </>
+    </div>
   );
 }
 
