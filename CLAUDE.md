@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build` — production build into `build/client` (static assets) and `build/server` (SSR bundle)
 - `npm run start` — serve the production build with `react-router-serve`
 - `npm run typecheck` — runs `react-router typegen` then `tsc`; this is the only static check (no linter or test runner is configured)
+- `npm run format` — formats the whole repo with Prettier. Config is `.prettierrc` (Prettier defaults plus `prettier-plugin-tailwindcss`, which sorts Tailwind classes using `app/app.css` and also inside `cn(...)`/`cva(...)` calls). Cursor/VS Code formats on save via `.vscode/settings.json`.
 
 ## Architecture
 
