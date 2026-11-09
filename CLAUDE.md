@@ -23,7 +23,7 @@ React Router v8 in **Framework Mode** (Vite plugin `@react-router/dev/vite`) wit
 ## UI components (shadcn/ui)
 
 - Configured by `components.json` (Radix UI primitives, "vega" style, lucide icons). Add components with `npx shadcn@latest add <name>`; never hand-write files that the CLI can generate.
-- Generated components land in `app/common/components/ui/` (aliases in `components.json`) and are project-owned source — edit them directly rather than wrapping them. Shared app components such as `navigation-bar.tsx` live one level up in `app/common/components/`.
+- Generated components land in `app/common/components/ui/` (aliases in `components.json`) and are project-owned source — edit them directly rather than wrapping them. Shared app components such as `navigation.tsx` live one level up in `app/common/components/`.
 - Theme colors are CSS variables (`--background`, `--primary`, …) defined in `app/app.css`; change the theme there, not per component.
 - Merge class names with `cn`. It comes from the `cn` package (shadcn's replacement for clsx + tailwind-merge) and is re-exported from `~/lib/utils`.
 
