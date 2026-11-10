@@ -4,6 +4,7 @@ import { PostCard } from "~/features/community/components/post-card";
 import { IdeaCard } from "~/features/ideas/components/idea-card";
 import { JobCard } from "~/features/jobs/components/job-card";
 import { ProductCard } from "~/features/products/components/product-card";
+import { TeamCard } from "~/features/teams/components/team-card";
 
 export const meta: MetaFunction = () => {
   return [
@@ -111,6 +112,33 @@ export default function HomePage() {
             type="Full-time"
             positionLocation="Remote"
             salary="$100,000 - $120,000"
+          />
+        ))}
+      </div>
+      <div className="grid grid-cols-4 gap-4">
+        <div>
+          <h2 className="text-5xl leading-tight font-bold tracking-tight">
+            Find a team mate
+          </h2>
+          <p className="text-xl font-light text-foreground">
+            Join a team looking for a new member.
+          </p>
+          <Button variant="link" asChild className="p-0 text-lg">
+            <Link to="/teams">Explore all teams &rarr;</Link>
+          </Button>
+        </div>
+        {Array.from({ length: 7 }).map((_, index) => (
+          <TeamCard
+            key={`teamId-${index}`}
+            id={`teamId-${index}`}
+            leaderUsername="lynn"
+            leaderAvatarUrl="https://github.com/inthetiger.png"
+            positions={[
+              "React Developer",
+              "Backend Developer",
+              "Product Manager",
+            ]}
+            projectDescription="a new social media platform"
           />
         ))}
       </div>
