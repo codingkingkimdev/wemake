@@ -5,6 +5,7 @@ import { IdeaCard } from "~/features/ideas/components/idea-card";
 import { JobCard } from "~/features/jobs/components/job-card";
 import { ProductCard } from "~/features/products/components/product-card";
 import { TeamCard } from "~/features/teams/components/team-card";
+import type { Route } from "./+types/home-page";
 
 export const meta: MetaFunction = () => {
   return [
@@ -13,13 +14,20 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export default function HomePage() {
+export const loader = () => {
+  console.log("hello");
+  return {
+    hello: "world",
+  };
+};
+
+export default function HomePage({ loaderData }: Route.ComponentProps) {
   return (
     <div className="space-y-40 px-20">
       <div className="grid grid-cols-3 gap-4">
         <div>
           <h2 className="text-5xl leading-tight font-bold tracking-tight">
-            Today's Products
+            Today's Products {JSON.stringify(loaderData)}
           </h2>
           <p className="text-xl font-light text-foreground">
             The best products made by our community today.
